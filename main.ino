@@ -51,45 +51,45 @@ void loop()
 
   delay(1000);                      // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
   unsigned int uS = sonar.ping(); // Send ping, get ping time in microseconds (uS).
-float d = uS / US_ROUNDTRIP_CM;
+  float d = uS / US_ROUNDTRIP_CM;
   /* ******************** End of Ultrasonic Part ********************* */
 
 
   /* ******************** Start of Printing Result (both LCD and SD File) ********************* */
 
   Serial.print("Sea Level: ");
-  if((d) < 300) {
+  if((d) <= 300) {
     if (28 - (d) >0) {
-    Serial.print(28 - (d)); // Convert ping time to distance in cm and print result
-    Serial.println("cm");
-    
+      Serial.print(28 - (d),0); // Convert ping time to distance in cm and print result
+      Serial.println("cm");
       lcd.clear();
       lcd.print("Sea Level: ");
-      lcd.print(28 - (d));
+      lcd.print(28 - (d),0);
       lcd.print("cm");
+    }  
+    else {
+      Serial.println("0cm");
+      lcd.clear();
+      lcd.print("Sea Level: ");
+      lcd.print("0");
+      lcd.print("cm");
+    }
   }
-  else {
-    Serial.println("0cm");
-    lcd.clear();
-     lcd.print("Sea Level: ");
-     lcd.print("0");
-     lcd.print("cm");
-      }
-  if (d >300) {
+  if (d > 300) {
     Serial.println("OUT");
-     lcd.clear();
-     lcd.print("Sea Level: ");
-     lcd.print("OUT");
+    lcd.clear();
+    lcd.print("Sea Level: ");
+    lcd.print("OUT");
   }
-  Serial.print("");
+  
+  Serial.println("");
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
   File dataFile = SD.open(fname, FILE_WRITE);
 
   // if the file is available, write to it:
   if (dataFile) {
-    if(28-d>0 ){
-    dataFile.print(28 - d);
+      dataFile.print(28 - d,0);
     //dataFile.print("cm");
     dataFile.println("");
     Serial.println("One data was written.");
@@ -99,12 +99,10 @@ float d = uS / US_ROUNDTRIP_CM;
     Serial.println(fname);
     Serial.println("");
     SD.open(fname, FILE_WRITE);
-    if (datanum == 10) {numfile++;datanum = 0;}
+    if (datanum == 10) {numfile++; datanum = 0;}
     dataFile.flush();
     dataFile.close();
-    
   }
-
   // if the file isn't open, pop up an error:
   else {
    Serial.println();
@@ -116,6 +114,5 @@ float d = uS / US_ROUNDTRIP_CM;
 
   
 }
-}
-}
+
 
