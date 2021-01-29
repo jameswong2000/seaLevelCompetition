@@ -34,7 +34,6 @@ void setup() {
   
 
   Serial.print("Initializing SD card...");
-  Serial.println("");
 
   // make sure that the default chip select pin is set to
   // output, even if you don't use it:
@@ -61,35 +60,33 @@ void loop()
 
   /* ******************** Start of Printing Result (both LCD and SD File) ********************* */
 
-  Serial.print("Sea Level: ");
+ // Serial.print("Sea Level: ");
   if((d) <= 300) {
     if (28 - (d) >0) {
       Serial.print(28 - (d),0); // Convert ping time to distance in cm and print result
-      //Serial.println("cm");
       lcd.clear();
       lcd.print("Sea Level: ");
       lcd.print(28 - (d),0);
       lcd.print("cm");
-      BT.print(28 - (d),0);
+      
     }  
     else {
-      Serial.println("0cm");
+      Serial.println("0");
       lcd.clear();
       lcd.print("Sea Level: ");
       lcd.print("0");
       lcd.print("cm");
-      BT.print(0);
+     
     }
   }
   if (d > 300) {
-    Serial.println("OUT");
+    Serial.println("45");
     lcd.clear();
     lcd.print("Sea Level: ");
     lcd.print("OUT");
     BT.print("OUT");
   }
   
-    
   Serial.println("");
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
