@@ -8,10 +8,10 @@ Design and implementation of an automatic sea level measurement device, includin
  - Hong Kong Meteorological Society (HKMetSoc)
 
 ## Teammates:
- - Ng Ho Man Thomas
- - Wong Tat Ho Robert
  - Mak Chak Wing Marco
+ - Ng Ho Man Thomas
  - Wong Chun Hei James
+ - Wong Tat Ho Robert
 
 ## Device Components:
  - Arduino Uno R3 Microcontroller Board
@@ -35,8 +35,10 @@ Android App
 
 ![image](https://user-images.githubusercontent.com/66471232/162184489-14b6f4f8-2f4e-4c47-8a19-aa47a2d36d33.png)
 
-CIrcuit Diagram
+Circuit Diagram
 
 ![image](https://user-images.githubusercontent.com/66471232/162184578-18e06b29-ed7e-4558-87b7-d4185b270b8c.png)
 
+Report
 
+[seaLevelReport.pdf](https://github.com/jameswong2000/seaLevelCompetition/files/8442366/seaLevelReport.pdf)
